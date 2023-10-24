@@ -1,83 +1,155 @@
-// // const arr1 = [1, 2, 3, 4, 5, 6, 1, 1];
-// // const arr2 = [7, 8, 9, 10];
+// Task1
 
-// // const arr3 = arr2.concat(arr1);
-// // const arr4 = [...arr1, ...arr2]
-// // console.log(arr4);
-// const people = [
-//     {
-//         firstName: 'Muhammadrasul',
-//         interests: {
-//             football: 'Football',
-//             gaming: 'Fifa'
-//         }
-//     },
-//     {
-//         firstName: 'John',
-//         interset: {
-//             football: 'Football',
-//             gaming: 'Fifa'
-//         }
-//     },
-//     {
-//         firstName: 'John',
-//         interest: {
-//             football: 'Game',
-//             gaming: 'Fifa'
+// let sumoFNumbers = 0;
+// let count = 0;
+
+// while (count < 5) {
+//     let userInput = prompt('Son kiriting');
+
+//     if (userInput === "" || userInput === null) {
+//         console.log('Xato');
+//     } else {
+//         let number = parseInt(userInput);
+//         if (!isNaN(number)) {
+//             sumoFNumbers += number;
+//             count++;
+//         } else {
+//             console.log('Xato');
 //         }
 //     }
+// }
+
+// console.log(sumoFNumbers);
+
+
+// const arrayNumbers = [1, 2, 3, 4, 5];
+
+// function divideNumbers(array) {
+//     let evenSum = 0;
+//     let oddSum = 0;
+
+//     for (const number of array) {
+//         if (number % 2 === 0) {
+//             evenSum += number
+//         } else {
+//             oddSum += number
+//         }
+//     }
+//     const newArray = [evenSum, oddSum]
+//     return newArray;
+// }
+
+// console.log(divideNumbers(arrayNumbers));
+
+
+
+// const numbers = [-4, 0, 4, 12];
+// const numbers2 = [-6, 0, 27, 7];
+
+
+// const findMissingNumber = function (nums) {
+
+//     const minValue = Math.min(...nums);
+//     const maxValue = Math.max(...nums);
+//     const newArray = []
+//     for (let i = minValue; i <= maxValue; i++) {
+//         newArray.push(i)
+//     }
+//     const missingNumbers = newArray.filter((element) => !nums.includes(element));
+
+//     return missingNumbers;
+// }
+// console.log(findMissingNumber(numbers));
+// console.log(findMissingNumber(numbers2));
+// findMissingNumber(numbers2);
+
+
+// const listItems = document.querySelectorAll('.menu li');
+
+// listItems.forEach((item, index) => {
+//     const span = item.querySelector('span');
+
+//     item.addEventListener('click', () => {
+//         span.textContent = `${index} hello world`
+//         console.log(`${index} item is clicked`);
+//     })
+// })
+
+// const ntStudents = [
+//     {
+//         firstName: 'John',
+//         lastName: 'Doe',
+//         age: 18
+//     },
+//     {
+//         firstName: 'Ali',
+//         age: 20
+//     }
 // ]
+// const ntStudentinJson = JSON.stringify(ntStudents);
 
-// for (const person of people) {
-//     console.log(person.interests?.football);
+// localStorage.setItem('student', ntStudentinJson);
+
+// const studentsInfo = JSON.parse(localStorage.getItem('student'))
+
+// console.log(studentsInfo);
+
+
+// const student = {
+//     firstName: 'John',
+//     lastName: 'Doe',
+//     age: 18
 // }
 
-// console.log('working');
+// const checkObj = student.hasOwnProperty('interests');
+// console.log(checkObj);
+
+// const secondDiv = document.querySelector('.second'),
+//     firstDiv = secondDiv.closest('.box');
+// console.log(firstDiv);
 
 
-// let age = 23;
-// const age1 = age;
+// const form = document.querySelector('form'),
+//     userName = document.getElementById('name'),
+//     list = document.querySelector('.list'),
+//     storedNames = JSON.parse(localStorage.getItem('info')) || [];
 
-// age = 40;
-// console.log(age1);
-// console.log(age);
 
-// const person = {
-//     firstName: 'Muhammadrasul'
+// form.addEventListener('submit', (event) => {
+//     event.preventDefault();
+
+//     const name = userName.value.trim();
+
+//     const students = {
+//         name: name
+//     };
+
+//     if (name !== "") {
+//         storedNames.unshift(students);
+//         localStorage.setItem('info', JSON.stringify(storedNames))
+//     }
+//     form.reset();
+//     renderList()
+// });
+
+// function renderList() {
+//     list.innerHTML = '';
+
+//     storedNames.forEach((name, index) => {
+//         const wrapper = document.createElement('div');
+//         wrapper.classList.add('wrapper');
+//         const h4 = document.createElement('h4');
+//         h4.textContent = name.name;
+
+//         const deleteButton = document.createElement('button');
+//         deleteButton.textContent = 'Delete';
+
+//         wrapper.appendChild(h4);
+//         wrapper.appendChild(deleteButton);
+
+//         list.appendChild(wrapper);
+//     })
+
 // }
 
-// const person1 = person;
-
-// person.firstName = 'John';
-
-// console.log(person);
-// console.log(person1);
-// console.log(age);
-// let age = 23;
-
-
-
-const form = document.querySelector('.form');
-const firstName = document.querySelector('.firstName');
-const btn = document.querySelector('button')
-
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    // const inputValue = firstName.value;
-    // console.log(inputValue);
-
-})
-
-btn.addEventListener('click', () => {
-
-    const inputValue = firstName.value;
-    console.log(inputValue);
-})
-
-
-
-firstName.addEventListener('input', () => {
-    const inputValue = firstName.value;
-    console.log(inputValue);
-})
+// renderList();
