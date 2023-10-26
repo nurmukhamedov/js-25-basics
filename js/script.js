@@ -1,114 +1,3 @@
-// Task1
-
-// let sumoFNumbers = 0;
-// let count = 0;
-
-// while (count < 5) {
-//     let userInput = prompt('Son kiriting');
-
-//     if (userInput === "" || userInput === null) {
-//         console.log('Xato');
-//     } else {
-//         let number = parseInt(userInput);
-//         if (!isNaN(number)) {
-//             sumoFNumbers += number;
-//             count++;
-//         } else {
-//             console.log('Xato');
-//         }
-//     }
-// }
-
-// console.log(sumoFNumbers);
-
-
-// const arrayNumbers = [1, 2, 3, 4, 5];
-
-// function divideNumbers(array) {
-//     let evenSum = 0;
-//     let oddSum = 0;
-
-//     for (const number of array) {
-//         if (number % 2 === 0) {
-//             evenSum += number
-//         } else {
-//             oddSum += number
-//         }
-//     }
-//     const newArray = [evenSum, oddSum]
-//     return newArray;
-// }
-
-// console.log(divideNumbers(arrayNumbers));
-
-
-
-// const numbers = [-4, 0, 4, 12];
-// const numbers2 = [-6, 0, 27, 7];
-
-
-// const findMissingNumber = function (nums) {
-
-//     const minValue = Math.min(...nums);
-//     const maxValue = Math.max(...nums);
-//     const newArray = []
-//     for (let i = minValue; i <= maxValue; i++) {
-//         newArray.push(i)
-//     }
-//     const missingNumbers = newArray.filter((element) => !nums.includes(element));
-
-//     return missingNumbers;
-// }
-// console.log(findMissingNumber(numbers));
-// console.log(findMissingNumber(numbers2));
-// findMissingNumber(numbers2);
-
-
-// const listItems = document.querySelectorAll('.menu li');
-
-// listItems.forEach((item, index) => {
-//     const span = item.querySelector('span');
-
-//     item.addEventListener('click', () => {
-//         span.textContent = `${index} hello world`
-//         console.log(`${index} item is clicked`);
-//     })
-// })
-
-// const ntStudents = [
-//     {
-//         firstName: 'John',
-//         lastName: 'Doe',
-//         age: 18
-//     },
-//     {
-//         firstName: 'Ali',
-//         age: 20
-//     }
-// ]
-// const ntStudentinJson = JSON.stringify(ntStudents);
-
-// localStorage.setItem('student', ntStudentinJson);
-
-// const studentsInfo = JSON.parse(localStorage.getItem('student'))
-
-// console.log(studentsInfo);
-
-
-// const student = {
-//     firstName: 'John',
-//     lastName: 'Doe',
-//     age: 18
-// }
-
-// const checkObj = student.hasOwnProperty('interests');
-// console.log(checkObj);
-
-// const secondDiv = document.querySelector('.second'),
-//     firstDiv = secondDiv.closest('.box');
-// console.log(firstDiv);
-
-
 // const form = document.querySelector('form'),
 //     userName = document.getElementById('name'),
 //     list = document.querySelector('.list'),
@@ -147,9 +36,106 @@
 //         wrapper.appendChild(h4);
 //         wrapper.appendChild(deleteButton);
 
+
+//         deleteButton.addEventListener('click', () => {
+//             storedNames.splice(index, 1);
+//             localStorage.setItem('info', JSON.stringify(storedNames));
+//             renderList();
+//         })
+
 //         list.appendChild(wrapper);
 //     })
 
 // }
 
 // renderList();
+
+
+// Event Delegation
+
+
+// const menu = document.querySelector('.menu');
+
+// menu.addEventListener('click', (event) => {
+//     if (event.target.tagName == 'LI') {
+//         console.log(`${event.target.textContent} clicked`);
+//     }
+// })
+
+// (function () {
+//     var firstName = "Danny";
+
+// })()
+// console.log(firstName);
+
+
+// import { helloWorld, multiply } from "./custom.js";
+
+// console.log(multiply(4, 5));
+// console.log(multiply(10, 20));
+// console.log(multiply(38, 21));
+
+
+// const box = document.querySelector('.box');
+// const block = document.querySelector('.block');
+// const boxAttr = box.hasAttribute('id');
+// const blockAttr = block.hasAttribute('id');
+// console.log(boxAttr);
+// console.log(blockAttr);
+
+// const buttons = document.querySelectorAll('button');
+
+// buttons.forEach((button) => {
+//     button.setAttribute('type', 'submit')
+//     if (button.hasAttribute('disabled')) {
+//         button.style.display = 'none';
+//     }
+// })
+
+
+const box = document.querySelector('.box');
+
+// console.log(box.dataset.myname);
+
+// const myFragment = new DocumentFragment();
+
+// const p = document.createElement('p');
+
+// p.textContent = 'Test';
+
+// const h2 = document.createElement('h2');
+// h2.textContent = 'Hello world';
+
+// myFragment.appendChild(h2);
+// myFragment.appendChild(p);
+
+// box.appendChild(myFragment);
+
+
+
+const form = document.querySelector('form');
+
+form.addEventListener('submit', (event) => {
+
+    event.preventDefault();
+    const name = document.querySelector('.name').value;
+    const lastName = document.querySelector('.lastName').value;
+    const errorName = document.querySelector('.error_name');
+    const errorLastName = document.querySelector('.error_lastname');
+
+    if (name.trim() == '' && lastName.trim() == '') {
+        errorName.textContent = 'ism yozish shart';
+        errorName.classList.add('error');
+        errorLastName.textContent = 'Familiya yozish shart';
+        errorLastName.classList.add('error');
+
+    } else {
+        errorName.textContent = '';
+        errorName.classList.remove('error');
+        errorLastName.textContent = '';
+        errorLastName.classList.remove('error');
+    }
+
+    form.reset();
+
+})
