@@ -7,11 +7,43 @@
     <title>Document</title>
 </head>
 
+
+<style>
+    .box {
+
+        max-width: 1120px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin: 0 auto;
+    }
+
+    @media screen and (max-width: 576px) {
+        .box {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+</style>
+
 <body>
 
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate pariatur eos cupiditate reiciendis
-        magnam.</p>
+    <!-- <h1>Who Can Go First?</h1>
+    <form>
+        <input type="text" placeholder="enter distance">
+        <button type="submit">Calculate</button>
+    </form>
 
+    <div class="box">
+        <h3></h3>
+        <h3></h3>
+        <h3></h3>
+        <h3></h3>
+    </div> -->
+
+
+    <div class="box">
+
+    </div>
 
     <script src="./js/script.js"></script>
 </body>
