@@ -1,94 +1,99 @@
-// const form = document.querySelector('form');
-// const input = document.querySelector('input');
-// const boxContent = document.querySelectorAll('.box h3');
-
-
-// const calcDistance = function (userDistance) {
-//     const walkingSpeed = 3.6;
-//     const bikingSpeed = 20.1;
-//     const carSpeed = 70;
-//     const planeSpeed = 800;
-
-//     const walkingTime = (userDistance / walkingSpeed).toFixed(2);
-//     const bikingTime = (userDistance / bikingSpeed).toFixed(2);
-//     const carTime = (userDistance / carSpeed).toFixed(2);
-//     const planeTime = (userDistance / planeSpeed).toFixed(2);
-
-//     return {
-//         walking: walkingTime,
-//         biking: bikingTime,
-//         car: carTime,
-//         plane: planeTime
-//     }
-// }
-
-// form.addEventListener('submit', (event) => {
-//     event.preventDefault();
-//     const distance = input.value.trim();
-//     const travel = calcDistance(distance);
-//     boxContent[0].textContent = travel.walking;
-//     boxContent[1].textContent = travel.biking;
-//     boxContent[2].textContent = travel.car;
-//     boxContent[3].textContent = travel.plane;
-//     form.reset();
-// });
-
-
-
-
-
-// const multiply = function (number) {
-//     return function (number2) {
-//         return number * number2
-//     }
-// }
-
-// const multiply1 = multiply(2);
-
-// console.log(multiply1(5));
-// console.log(multiply1(7));
-
-
-// const sayHello = function (name, callback) {
-//     const age = 23;
-//     console.log(`Hello I'm ${name}`);
-//     callback(name, age);
-// }
-
-// const bye = (param, age) => {
-//     console.log(`Good Bye ${param}, I'm ${age} years old`);
-// };
-
-// sayHello('Muhammadrasul', bye);
-
-
-
 const box = document.querySelector('.box');
+const loading = document.querySelector('.loading');
+const notFoundMessage = document.querySelector('.notFoundMessage');
+const form = document.querySelector('form');
+const input = document.querySelector('.search');
+const itemsPerPage = 100;
+let currentPage = 1;
+let totalItems = 0;
 
+
+let newData = [];
 const myData = fetch('https://jsonplaceholder.typicode.com/photos');
+
 
 myData.then(function (response) {
     return response.json();
 }).then(function (datas) {
-    const cutData = datas.slice(0, 100);
-    cutData.forEach((data) => {
-        console.log(data);
-        const mainDiv = document.createElement('div');
-        mainDiv.classList.add('main-box')
-        const image = document.createElement('img');
-        image.src = data.thumbnailUrl;
-        image.alt = data.title;
-        mainDiv.appendChild(image);
-        const id = document.createElement('h3');
-        id.textContent = data.id;
-        mainDiv.appendChild(id);
 
-        const title = document.createElement('h2');
-        title.textContent = data.title;
-        mainDiv.appendChild(title);
-        box.appendChild(mainDiv);
+    newData = datas.slice(0, 1000);
+    totalItems = newData.length;
+
+    generatePaginationLinks();
+    updateCards('')
+})
+
+
+function updateCards(searchValue) {
+    box.innerHTML = '';
+    let found = false;
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+    console.log(startIndex);
+    console.log(endIndex);
+    newData.slice(startIndex, endIndex).forEach((data) => {
+        console.log(data);
+        const dataTitle = data.title.toLowerCase();
+        const searchData = searchValue.toLowerCase();
+        if (dataTitle.includes(searchData)) {
+            const mainDiv = document.createElement('div');
+            mainDiv.classList.add('main-box')
+            const image = document.createElement('img');
+            image.src = data.thumbnailUrl;
+            image.alt = data.title;
+            mainDiv.appendChild(image);
+            const id = document.createElement('h3');
+            id.textContent = data.id;
+            mainDiv.appendChild(id);
+            const title = document.createElement('h2');
+            title.textContent = data.title;
+            mainDiv.appendChild(title);
+            box.appendChild(mainDiv);
+            found = true;
+        }
+    });
+
+    window.scrollTo(0, 0)
+
+    loading.style.display = 'none';
+    if (!found) {
+        notFoundMessage.style.display = 'block';
+    } else {
+        loading.style.display = 'none';
+        notFoundMessage.style.display = 'none';
+    }
+}
+const pagination = document.querySelector('.pagination');
+
+function generatePaginationLinks() {
+    pagination.innerHTML = '';
+    const totalPage = Math.round(totalItems / itemsPerPage);
+
+    newData.slice(0, totalPage).forEach((_, i) => {
+        const pageLink = document.createElement('li');
+        pageLink.textContent = i + 1;
+
+        pagination.appendChild(pageLink);
+
+        pageLink.addEventListener('click', () => {
+            console.log('clicked');
+            currentPage = i + 1;
+            updateCards('');
+            updatePaginationLink();
+        })
 
     })
+
+}
+
+function updatePaginationLink() {
+    const pageLinks = pagination.querySelectorAll('li');
+
+}
+
+input.addEventListener('input', () => {
+    const searchValue = input.value.trim();
+    updateCards(searchValue);
 })
 
 
