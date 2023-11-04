@@ -46,9 +46,7 @@ function renderCountry(countriesData) {
 }
 getData('https://restcountries.com/v3.1/all').then((data) => renderCountry(data));
 
-
 const GITHUBAPIURL = 'https://api.github.com/users';
-
 
 const data = fetch(GITHUBAPIURL, {
     method: 'GET',
