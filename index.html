@@ -5,12 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card img {
+            max-width: 100px;
+        }
+    </style>
 </head>
 
 <body>
+    <select id="sortDropdown">
+        <option value="nameAsc">Name (A to Z)</option>
+        <option value="nameDesc">Name (Z to A)</option>
+        <option value="populationHighToLow">Population (High to Low)</option>
+        <option value="populationLowToHigh">Population (Low to High)</option>
+    </select>
 
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate pariatur eos cupiditate reiciendis
-        magnam.</p>
+    <form class="form" id="form">
+        <input type="text" id="searchInput" placeholder="Search by country name" required>
+        <button type="submit">Search country</button>
+    </form>
+
+    <div class="container" id="countryContainer"></div>
 
 
     <script src="./js/script.js"></script>
