@@ -20,25 +20,26 @@
             border: 1px solid #ccc;
             padding: 20px;
             text-align: center;
+            max-width: 250px;
+            width: 100%;
         }
 
         .card img {
-            max-width: 100px;
+            width: 100%;
+            object-fit: cover;
         }
     </style>
 </head>
 
 <body>
-    <select id="sortDropdown">
-        <option value="nameAsc">Name (A to Z)</option>
-        <option value="nameDesc">Name (Z to A)</option>
-        <option value="populationHighToLow">Population (High to Low)</option>
-        <option value="populationLowToHigh">Population (Low to High)</option>
-    </select>
 
+    <select name="" id="">
+        <option value="">Popularity asc</option>
+        <option value="">Popularity desc</option>
+    </select>
     <form class="form" id="form">
-        <input type="text" id="searchInput" placeholder="Search by country name" required>
-        <button type="submit">Search country</button>
+        <input type="text" id="searchInput" placeholder="Search by username" required>
+        <button type="submit">Search user</button>
     </form>
 
     <div class="container" id="countryContainer"></div>
