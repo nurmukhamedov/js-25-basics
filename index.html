@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         .container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -28,6 +32,29 @@
             width: 100%;
             object-fit: cover;
         }
+
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            column-gap: 10px;
+        }
+
+        .pagination-container button {
+            background-color: #fff;
+            color: #000;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            border-radius: 20px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+
+        .pagination-container button.active {
+            background-color: #000;
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -43,7 +70,7 @@
     </form>
 
     <div class="container" id="countryContainer"></div>
-
+    <div class="pagination-container" id="pagination-container"></div>
 
     <script src="./js/script.js"></script>
 </body>
