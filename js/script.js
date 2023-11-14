@@ -1,97 +1,89 @@
-const postContainer = document.querySelector('.postContainer');
+// const items = Array.from(document.querySelectorAll('div'))
+// console.log(items);
 
-async function createPost() {
-    const firstName = document.querySelector('.firstName').value.trim();
-    const lastName = document.querySelector('.lastName').value.trim();
-    const userID = new Date().getMilliseconds();
-
-
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json;  charset=UTF-8'
-        },
-        body: JSON.stringify({ firstName, lastName, userID })
-    });
+// items.map((item) => {
+//     item.textContent = 'Hello world'
+// })
 
 
 
-    if (response.ok) {
-        const newPost = await response.json();
-        console.log(newPost);
-        const postWrapper = document.createElement('div');
 
-        const name = document.createElement('h2');
-        name.textContent = newPost.firstName;
 
-        const lastNameElement = document.createElement('h3');
-        lastNameElement.textContent = newPost.lastName;
 
-        postWrapper.appendChild(name);
-        postWrapper.appendChild(lastNameElement);
+// setTimeout(() => {
+//     try {
+//         console.log('Hello world');
+//     } catch (error) {
+//         console.log(error);
+//     } finally {
+//         console.log('Finally is working');
+//     }
+// }, 2000);
 
-        const editButton = document.createElement('button');
-        editButton.textContent = 'Edit';
-        postWrapper.appendChild(editButton);
 
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        postWrapper.appendChild(deleteButton);
+// const number = 5;
 
-        postContainer.appendChild(postWrapper);
+// if (number < 4) {
+//     console.log('if working');
+// } else {
+//     throw new Error('Else is working')
+// }
 
-        editButton.addEventListener('click', () => {
-            editPost(newPost.id, name, lastNameElement);
-        });
 
-        deleteButton.addEventListener('click', () => {
-            deletePost(newPost.id, postWrapper);
-        });
-    }
 
-}
+// const exampleFunction = (...a) => {
+//     return a
+// }
 
-async function deletePost(postId, postElement) {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`, {
-        method: 'DELETE'
-    });
+// console.log(exampleFunction(1, 2, 3, 4, 5, 6));
 
-    if (response.ok) {
-        postContainer.removeChild(postElement);
-    } else {
-        console.log(`${postId} bilan o'chirishda xatolik ro'y berdi`);
-    }
-}
+// const array = [9, 8, 7, 1, 5];
 
-async function editPost(postId, nameElement, lastNameElement) {
-    const updatedFirstName = prompt('Enter updated first name:', nameElement.textContent);
-    const updatedLastName = prompt('Enter updated last name:', lastNameElement.textContent);
+// const [one, , two, three] = array;
+// console.log(two);
+// console.log(...array);
 
-    try {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`, {
-            method: 'PUT',
-            headers: {
-                'Content-type': 'application/json;  charset=UTF-8'
-            },
-            body: JSON.stringify({ firstName: updatedFirstName, lastName: updatedLastName })
-        });
+// const obj = {
+//     name: 'Muhammadrasul'
+// }
 
-        if (response.ok) {
-            const updatedPost = await response.json();
-            nameElement.textContent = updatedPost.firstName;
-            lastNameElement.textContent = updatedPost.lastName;
-        } else {
-            console.log(`${postId} bilan tahrirlashda xatolik ro'y berdi`);
-        }
-    } catch (error) {
-        console.log(error);
-    }
-}
-const form = document.querySelector('.form');
 
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    createPost();
 
-    form.reset();
-})
+// let x = 10;
+// let y = 15;
+
+
+// [x, y] = [y, x];
+
+// console.log(x);
+// console.log(y);
+
+
+const menu = document.querySelector('.menu');
+
+// const menu2 = menu.cloneNode(true);
+
+// console.log(menu2);
+
+// console.log(menu.outerHTML);
+
+
+// const text = document.createElement('p');
+
+// text.textContent = 'Hello world';
+
+// menu.after(text);
+
+
+// const array = [1, 2, 3, 4, 5];
+
+// menu.innerHTML = '';
+// array.forEach((element) => {
+//     menu.innerHTML += `
+//             <li>${element}</li>
+// `
+// });
+
+
+
+
